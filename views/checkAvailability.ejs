@@ -1,0 +1,30 @@
+<!-- views/checkAvailability.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Availability and Book</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Check Availability and Book</h1>
+  <form action="/checkAvailability" method="post">
+    <!-- Add your availability check form elements here -->
+    <input type="text" name="date" placeholder="Date" required>
+    <input type="text" name="period" placeholder="Period" required>
+    <button type="submit">Check Availability</button>
+  </form>
+
+  <form action="/book" method="post">
+    <!-- Add your booking form elements here -->
+    <select name="className">
+      <!-- Populate this dropdown with available classrooms -->
+      <option value="class1">Class 1</option>
+      <option value="class2">Class 2</option>
+    </select>
+    <button type="submit">Book</button>
+  </form>
+</body>
+</html>

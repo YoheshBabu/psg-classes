@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <link rel="stylesheet" href="C:\Users\yohes\OneDrive\Desktop\Class Booking\neon.css">
+</head>
+
+<body>
+  
+
+  <% if (!showDropdown) { %>
+    <form action="/checkAvailability" method="post">
+      <div class="py-5" style="background-image:linear-gradient(rgba(0, 234, 255, 0.633), rgba(0, 234, 255, 0.222)), url('https://www.psgtech.edu/images/slider/slider1.jpg'); background-position:left center; background-size: cover;">
+        <div class="container">
+          <div class="row">
+            <div class="p-5 col-lg-6" style="background-color: white;border:solid 5px black;border-radius: 20px;">
+              <h1>Check the class you want to book</h1>
+              <form>
+                <div class="form-group"> <input type="date" class="form-control" placeholder="Choose Date" id="date" name="date" min="<%= new Date().toISOString().split('T')[0] %>" required> </div>
+                <div class="form-group"> <input type="number" class="form-control" placeholder="Period"  id="period" name="period" min="1" max="10" required> 
+                  
+                </div> 
+                  <br><br>
+                  <button type="submit" class="btn btn-primary"  value="Check Availability">Check Availability</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  <% } else { %>
+    <form action="/book" method="post">
+      <div class="py-5" style="background-image: linear-gradient(rgba(0, 234, 255, 0.782), rgba(0, 234, 255, 0.222)),url('https://www.psgtech.edu/images/slider/slider1.jpg'); background-position:left center; background-size: cover;">
+        <div class="container">
+          <div class="row">
+            <div class="p-5 col-lg-6" style="background-color: white;border:solid 5px black;border-radius: 20px;">
+              <h1>BOOK YOUR CLASS HERE</h1>
+              <form>
+                <div class="form-group"> <input type="text" class="form-control"  id="name" name="name" value="<%=username%>" readonly> </div>
+                <div class="form-group"> <input type="date" class="form-control" placeholder="Choose Date" id="date" name="date" min="<%= new Date().toISOString().split('T')[0] %>" required readonly value="<%=date%>" > </div>
+                <div class="form-group"> <input type="number" class="form-control" placeholder="Period"  id="period" name="period" min="1" max="10" required readonly value="<%=period%>"> 
+                   </div> 
+                   
+                  <div class="btn-group">
+                    <select id="classroom" name="classroom" required style="width: 100px;background-color:aliceblue;width: 200px;border-radius: 5px;">
+                      <% classrooms.forEach(classroom => { %>
+                        <option value="<%= classroom.className %>"><%= classroom.className %></option>
+                      <% }); %>
+                    </select>
+                  </div>
+                  <br><br><br>
+
+                  <button type="submit" class="btn btn-primary"  value="Book">Book</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  <% } %>
+
+
+
+  <form action="/bookings" method="get">
+    <div class="py-5 text-center" style="background-color: white; background-size: 100%;" >
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto col-md-6">
+            <h1>Choose a class to view booking</h1>
+            <div class="btn-group">
+              <label for="selectedClass"></label>
+      <select id="selectedClass" name="selectedClass" required style="height:40px;width: 100px;">
+        <% classrooms.forEach(classroom => { %>
+          <option value="<%= classroom.className %>"><%= classroom.className %></option>
+        <% }); %>
+      </select><br>
+            </div><input type="submit" class="btn btn-primary" value="View bookings" style="height: 40px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

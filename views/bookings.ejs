@@ -1,0 +1,56 @@
+<!-- views/bookings.ejs -->
+<html>
+<head>
+  <title>Upcoming Bookings</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      border: 5px solid black;
+      border-radius: 50px;
+    }
+    th, td {
+      border: 2px solid black;
+      padding: 8px;
+      text-align: left;
+      background-color: aqua;
+      font-size: 25px;
+      font-family: Cambria;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    body{
+      background: linear-gradient(rgba(0, 234, 255, 0.222), rgba(0, 234, 255, 0.222)),url('https://th-i.thgim.com/public/incoming/waac3s/article67520345.ece/alternates/FREE_1200/CB23_PSG.jpg');
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  
+  <center><h1 style="font-size: 60px;text-shadow: 0 0 9px aqua;">Upcoming Bookings</h1></center>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Period 1</th>
+      <th>Period 2</th>
+      <th>Period 3</th>
+      <th>Period 4</th>
+      <th>Period 5</th>
+      <th>Period 6</th>
+      <th>Period 7</th>
+      <th>Period 8</th>
+      <th>Period 9</th>
+      <th>Period 10</th>
+    </tr>
+    <% for (const dateKey in bookingsTable) { %>
+      <tr>
+        <td><%= dateKey %></td>
+        <% for (let period = 1; period <= 10; period++) { %>
+          <td><%= bookingsTable[dateKey][`period${period}`] || '' %></td>
+        <% } %>
+      </tr>
+    <% } %>
+  </table>
+</body>
+</html>
